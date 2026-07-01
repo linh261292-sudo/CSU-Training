@@ -160,12 +160,21 @@ body {
 .slide.in-view .reveal { opacity: 1; transform: translateY(0); }
 
 /* ─── TYPOGRAPHY ─── */
-.slide-tag { font-family: var(--font-display); font-size: clamp(9px,1vw,11px); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--green); margin-bottom: 14px; }
-.slide-title { font-family: var(--font-display); font-size: clamp(26px,4vw,52px); font-weight: 800; line-height: 1.15; color: var(--white); margin-bottom: 20px; }
+.slide-tag { font-family: var(--font-display); font-size: clamp(9px,1vw,11px); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--green); margin: 0 auto 14px; text-align: center; }
+.slide-title { font-family: var(--font-display); font-size: clamp(26px,4vw,52px); font-weight: 800; line-height: 1.15; color: var(--white); margin: 0 auto 20px; text-align: center; }
 .slide-title span.accent { color: var(--blue); }
 .slide-title span.green  { color: var(--green); }
-.slide-sub { font-size: clamp(13px,1.5vw,17px); font-weight: 400; color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 28px; max-width: 680px; }
-.divider { width: 60px; height: 3px; background: linear-gradient(90deg,var(--blue),var(--green)); border-radius: 2px; margin-bottom: 28px; }
+.slide-sub { font-size: clamp(13px,1.5vw,17px); font-weight: 400; color: rgba(255,255,255,0.7); line-height: 1.6; margin: 0 auto 28px; max-width: 680px; text-align: center; }
+.divider { width: 60px; height: 3px; background: linear-gradient(90deg,var(--blue),var(--green)); border-radius: 2px; margin: 0 auto 28px; }
+.slide-content { text-align: center; }
+.slide-content .cards-grid,
+.slide-content .two-col,
+.slide-content .stats-row,
+.slide-content .info-list,
+.slide-content .steps,
+.slide-content .info-table,
+.slide-content .warn-box,
+.slide-content .ok-box { text-align: left; }
 
 /* ─── CARDS ─── */
 .cards-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 14px; margin-top: 8px; }
@@ -229,6 +238,18 @@ body {
 .cover-title { font-family: var(--font-display); font-size: clamp(32px,5.5vw,70px); font-weight: 800; line-height: 1.1; margin-bottom: 18px; }
 .cover-rule { font-family: var(--font-display); font-size: clamp(11px,1.2vw,14px); color: rgba(255,255,255,0.5); letter-spacing: 1px; margin-bottom: 8px; }
 .cover-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
+.cover-author {
+  display: flex; align-items: center; gap: 12px; margin: 22px auto 0; padding: 10px 20px 10px 16px;
+  border: 1px solid rgba(0,131,199,0.3); border-radius: 999px; background: rgba(255,255,255,0.05); width: fit-content;
+}
+.cover-author::before {
+  content: "\2713"; width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg,var(--blue),var(--green)); color: #fff; font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+}
+.cover-author-name { font-family: var(--font-display); font-weight: 700; color: var(--white); font-size: 13.5px; }
+.cover-author-role { font-size: 11.5px; color: rgba(255,255,255,0.55); position: relative; padding-left: 12px; }
+.cover-author-role::before { content: "\00B7"; position: absolute; left: 0; color: var(--green); }
 
 /* ─── PROGRESS ─── */
 #progress-bar { position: fixed; right: 10px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 6px; z-index: 200; }
@@ -242,16 +263,7 @@ body {
 <nav id="sidebar">
   <div id="sidebar-header">
     <div id="sidebar-logo">
-      <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="42" height="42" rx="8" fill="#0A2A4A"/>
-        <rect width="42" height="42" rx="8" fill="url(#sg)" opacity="0.3"/>
-        <path d="M21 7 C21 7 15 13.5 15 19 C15 23.6 17.8 26.5 21 26.5 C24.2 26.5 27 23.6 27 19 C27 13.5 21 7 21 7Z" fill="#00B050" opacity="0.9"/>
-        <path d="M21 12 C21 12 17.5 16.5 17.5 19.5 C17.5 21.9 19.1 23.5 21 23.5 C22.9 23.5 24.5 21.9 24.5 19.5 C24.5 16.5 21 12 21 12Z" fill="white" opacity="0.95"/>
-        <rect x="12" y="29" width="18" height="2.5" rx="1.25" fill="white" opacity="0.4"/>
-        <rect x="15" y="34" width="12" height="2" rx="1" fill="white" opacity="0.25"/>
-        <defs><linearGradient id="sg" x1="0" y1="0" x2="42" y2="42"><stop offset="0%" stop-color="#0083C7"/><stop offset="100%" stop-color="#00B050"/></linearGradient></defs>
-      </svg>
-      <div id="sidebar-logo-text">PVPGB<small>PetroVietnam PVPGB</small></div>
+      <div id="sidebar-logo-text">PVPGB<small>Chi Nhánh Phát Điện PVPGB</small></div>
     </div>
     <div class="logo-line">SH1 · QT.SH1-NL.03</div>
     <div class="logo-sub">Vận hành máy bốc dỡ than CSU</div>
@@ -295,7 +307,13 @@ body {
   <div class="slide-content">
     <div class="reveal"><div class="cover-rule">QT.SH1-NL.03 · Lần ban hành 03 · Tháng 05/2026</div></div>
     <div class="reveal delay-1"><h1 class="cover-title">Vận hành<br><span style="color:var(--blue);">Máy Bốc Dỡ Than</span><br><span style="color:var(--green);">CSU</span></h1></div>
-    <div class="reveal delay-2"><p class="slide-sub">Chương trình đào tạo Vận hành viên tại chỗ<br>Nhà Máy Nhiệt Điện Sông Hậu 1 – PetroVietnam PVPGB</p></div>
+    <div class="reveal delay-2"><p class="slide-sub">Chương trình đào tạo Vận hành viên tại chỗ<br>Nhà Máy Nhiệt Điện Sông Hậu 1 – Chi Nhánh Phát Điện PVPGB</p></div>
+    <div class="reveal delay-2">
+      <div class="cover-author">
+        <span class="cover-author-name">Lê Trí Linh</span>
+        <span class="cover-author-role">Trưởng kíp — Người hướng dẫn &amp; biên soạn</span>
+      </div>
+    </div>
     <div class="cover-badges reveal delay-3">
       <span class="badge badge-blue">PVPGB</span>
       <span class="badge badge-green">Sông Hậu 1</span>
@@ -356,7 +374,7 @@ body {
             <tr><td>BCN</td><td><strong>Boom Conveyor</strong> – Băng tải cần (trên cần CSU)</td></tr>
             <tr><td>BC11/BC12</td><td><strong>Belt Conveyor</strong> 11/12 – Băng tải hệ thống vận chuyển than</td></tr>
             <tr><td>DCS</td><td>Distributed Control System – Hệ thống điều khiển phân tán</td></tr>
-            <tr><td>PVPGB</td><td>PetroVietnam Power Generation Binh Duong</td></tr>
+            <tr><td>PVPGB</td><td>Chi Nhánh Phát Điện</td></tr>
             <tr><td>SH1</td><td>Sông Hậu 1 – Nhà máy nhiệt điện</td></tr>
             <tr><td>CB</td><td><strong>Circuit Breaker</strong> – Máy cắt điện 11kV</td></tr>
           </tbody>
